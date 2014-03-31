@@ -68,14 +68,13 @@ service php-fpm start; chkconfig php-fpm on;
 
 
 
+wget -O /etc/nginx/nginx.conf https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/nginx-main-conf.txt;
 
-wget -O /etc/nginx/nginx.conf https://raw.github.com/ComfortVPS/Nginx-PHP-MySql-phpMyAdmin/master/nginx-main-conf.txt;
+wget -O /etc/nginx/conf.d/default.conf  https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/nginx-default-conf.txt;
 
-wget -O /etc/nginx/conf.d/default.conf  https://raw.github.com/ComfortVPS/Nginx-PHP-MySql-phpMyAdmin/master/nginx-default-conf.txt;
+wget -O /etc/nginx/conf.d/example.com.conf  https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/nginx-custom-config-example.txt;
 
-wget -O /etc/nginx/conf.d/example.com.conf  https://raw.github.com/ComfortVPS/Nginx-PHP-MySql-phpMyAdmin/master/nginx-custom-config-example.txt;
-
-wget -O /etc/nginx/conf.d/my_domain https://raw.github.com/ComfortVPS/Nginx-PHP-MySql-phpMyAdmin/master/nginx-my-domain-conf.txt;
+wget -O /etc/nginx/conf.d/my_domain https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/nginx-my-domain-conf.txt;
 
 rm -f /etc/nginx/conf.d/example_ssl.conf
 
@@ -85,7 +84,7 @@ FREE_RAM=`free -m| grep Mem|awk '{print $4}'`
 if [ `echo "$FREE_RAM < 512"|bc` -eq 1 ]
 then
 	mv /etc/my.cnf /etc/my.cnf.bak;
-	wget -O /etc/my.cnf http://danhgiahost.com/script/install/mysql-my-cnf.txt;
+	wget -O /etc/my.cnf https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/mysql-my-cnf.txt;
 	service mysqld restart;  
 fi 
 
@@ -104,10 +103,10 @@ mkdir -p /www/ip.com/custom_error_page;
 cd /www/ip.com;
 
 
-wget -O /www/ip.com/index.php  https://raw.github.com/ComfortVPS/Nginx-PHP-MySql-phpMyAdmin/master/nginx-default-index.html;
+wget -O /www/ip.com/index.php  https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/nginx-default-index.html;
 
 
-wget -O /www/mysql-and-sftp-password.php  https://raw.github.com/ComfortVPS/Nginx-PHP-MySql-phpMyAdmin/master/nginx-mysql-password.html;
+wget -O /www/mysql-and-sftp-password.php  https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/nginx-mysql-password.html;
 
 sed -i "s/COMFORTVPSPASSWORD/${pass2}/g" /www/mysql-and-sftp-password.php;
 
@@ -116,9 +115,9 @@ sed -i "s/COMFORTVPSPASSWORD/${pass2}/g" /www/mysql-and-sftp-password.php;
 
 ########## Download error pages ##########
 
-wget -O /www/ip.com/custom_error_page/404.html  https://raw.github.com/ComfortVPS/Nginx-PHP-MySql-phpMyAdmin/master/nginx-404.html;
-wget -O /www/ip.com/custom_error_page/403.html  https://raw.github.com/ComfortVPS/Nginx-PHP-MySql-phpMyAdmin/master/nginx-403.html;
-wget -O /www/ip.com/custom_error_page/50x.html  https://raw.github.com/ComfortVPS/Nginx-PHP-MySql-phpMyAdmin/master/nginx-50x.html;
+wget -O /www/ip.com/custom_error_page/404.html  https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/nginx-404.html;
+wget -O /www/ip.com/custom_error_page/403.html  https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/nginx-403.html;
+wget -O /www/ip.com/custom_error_page/50x.html  https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/nginx-50x.html;
 
 
 
@@ -127,7 +126,7 @@ wget -O /www/ip.com/custom_error_page/50x.html  https://raw.github.com/ComfortVP
 
 ########## Install phpMyAdmin ##########
 
-wget -O /www/ip.com/phpmyadmin_url.txt  https://raw.github.com/ComfortVPS/Nginx-PHP-MySql-phpMyAdmin/master/phpmyadmin_url.txt
+wget -O /www/ip.com/phpmyadmin_url.txt  https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/phpmyadmin_url.txt
 wget -O /www/ip.com/phpMyAdmin4.tar.gz -i /www/ip.com/phpmyadmin_url.txt
 
 tar -zxvf phpMyAdmin*.gz > /dev/null;
@@ -163,7 +162,7 @@ echo -e "\n\n\n\n";
 ########## Fast install command line ########## 
 # What's you need to do is: Copy and post/run below single command line via SSH root login. Wait 5-15 minutes(depending on the software download speed from your server), Everything is Done!
 
-# wget -O /tmp/install-nginx-php-mysql.sh https://raw.github.com/ComfortVPS/Nginx-PHP-MySql-phpMyAdmin/master/install-nginx-php-mysql.sh; sh /tmp/install-nginx-php-mysql.sh;
+# wget -O /tmp/install-nginx-php-mysql.sh https://raw.github.com/vinhthanh/Nginx-PHP-MySql-phpMyAdmin/master/install-nginx-php-mysql.sh; sh /tmp/install-nginx-php-mysql.sh;
 
-
+# Copyright ComfortVPS
 
